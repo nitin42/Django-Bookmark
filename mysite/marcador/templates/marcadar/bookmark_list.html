@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Latest bookmarks{% endblock %}
+{% load marcador_tags %}
+
+{% block heading %}
+	<h2><span class="glyphicon glyphicon-bookmark"></span>&nbsp;Latest bookmarks</h2>
+{% endblock %}
+
+{% block content %}
+	<ul class="list-unstyled">
+{% for bookmark in bookmarks %}
+
+	<li class="well well-sm">{% include "marcadar/bookmark.html" %}</li>
+{% empty %}
+
+	<li>No bookmarks. :(</li>
+
+{% endfor %}
+	</ul>
+
+	<nav>
+		<ul class="pager">
+  		{% if bookmarks.has_previous %}
+    		<li class="previous"><a href="?page={{ bookmarks.previous_page_number }}"><span aria-hidden="true">&larr;</span> Older</a></li>
+    	{% endif %}
+    	
+    	{% if bookmarks.has_next %}
+    		<li class="next"><a href="?page={{ bookmarks.next_page_number }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+    	{% endif %}
+  		
+  		</ul>
+	</nav>
+
+{% endblock %}
+
+{% block sidebar %}
+  {% tagcloud %}
+{% endblock %}
