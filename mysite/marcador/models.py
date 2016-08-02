@@ -48,7 +48,7 @@ class Bookmark(models.Model):
 		return self.title
 
 	def save(self, *args, **kwargs):
-		if not self.id: # If the ID field is not present in the database then creat it
+		if not self.id: # If the ID field is not present in the database then create it
 			self.date_created = now()
 		self.date_updated = now()
 		super(Bookmark, self).save(*args, **kwargs)
